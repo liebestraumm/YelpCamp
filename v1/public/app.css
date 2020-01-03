@@ -1,0 +1,30 @@
+.thumbnail{
+	border: 0 none;
+	box-shadow: none;
+}
+
+.caption{
+	text-align: center;
+}
+
+.imagegrid{
+	display: flex;
+	flex-wrap: wrap;
+
+}
+
+
+.nav-text-center
+{
+    position: absolute;
+    width: 100%;
+    left: 5;
+    top: 0;
+    text-align: center;
+}
+
+.center-elements{
+	width: 30%;
+	margin: 20px auto;
+	text-align: center;
+}
