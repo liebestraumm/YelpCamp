@@ -20,7 +20,17 @@ app.get("/", function(req, res){
 
 app.get("/campgrounds", function(req, res){
 
-	res.render("campgrounds.ejs", {campImages:campImages});
+	res.render("campgrounds", {campImages:campImages});
+});
+
+app.post("/campgrounds", function(req, res){
+
+	res.render("campgrounds", {campImages:campImages});
+});
+
+app.get("/campgrounds/new", function(req, res){
+
+	res.render("new", {campImages:campImages});
 });
 
 app.listen(3000, function(){

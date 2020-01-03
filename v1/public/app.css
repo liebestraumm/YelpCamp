@@ -12,3 +12,11 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+
+.navbar-brand{
+	position: absolute;
+	width:100%;
+	text-align: center;
+	left:5;
+	top:0;
+}
