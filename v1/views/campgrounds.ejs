@@ -1,0 +1,22 @@
+<%- include("partials/header") %>
+
+<h1> Campgrounds </h1>
+
+	<div class= "row imagegrid">
+
+		<% campImages.forEach(function(camp){  %>
+
+			<div class = "col-lg-4 col-md-3 col-sm-6 col-xs-6">
+				<div class = "thumbnail">
+					<div class = "caption">
+				    <h4> <%= camp.name %> </h4>
+				    </div>
+					<img src= <%= camp.image %> >
+				</div>
+			</div>
+
+		<% }); %>
+	</div>
+
+<br>
+<%- include("partials/footer") %>

@@ -1,0 +1,14 @@
+.thumbnail{
+
+	border: 0;
+	box-shadow: none;
+}
+
+.caption {
+	text-align: center;
+}
+
+.imagegrid{
+	display: flex;
+	flex-wrap: wrap;
+}

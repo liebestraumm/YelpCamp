@@ -7,9 +7,20 @@ app.use(express.static("public"));
 app.use(express.static("images"));
 app.set("view engine", "ejs");
 
+var campImages = [
+	{name: "Avila", image: "Avila.png"},
+	{name: "La Sabanita", image: "La_Sabanita.png"},
+	{name: "Gesundbrunnen", image: "Wansee.png"}
+];
+
 app.get("/", function(req, res){
 
 	res.render("home");
+});
+
+app.get("/campgrounds", function(req, res){
+
+	res.render("campgrounds.ejs", {campImages:campImages});
 });
 
 app.listen(3000, function(){
