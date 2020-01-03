@@ -20,3 +20,9 @@
 	left:5;
 	top:0;
 }
+
+.center-elements{
+	margin: 20px auto;
+	text-align: center;
+	width: 30%;
+}

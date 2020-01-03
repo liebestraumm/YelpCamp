@@ -25,13 +25,19 @@ app.get("/campgrounds", function(req, res){
 
 app.post("/campgrounds", function(req, res){
 
-	res.render("campgrounds", {campImages:campImages});
+	var name = req.body.camp;
+	var image = req.body.image;
+
+	campImages.push({name:name, image:image});
+
+	res.redirect("/campgrounds");
 });
 
 app.get("/campgrounds/new", function(req, res){
 
 	res.render("new", {campImages:campImages});
 });
+
 
 app.listen(3000, function(){
 
