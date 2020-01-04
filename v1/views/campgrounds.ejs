@@ -1,8 +1,9 @@
 <%- include("partials/header") %>
 
 <header>
-	<div class="jumbotron text-center">
+	<div class="jumbotron text-center" style="background-color: magenta;">
 		<h2>Yelp Campgrounds</h2>
+		<h4>View our hand picked campgrounds from all over the world</h4>
 		<a class="btn btn-lg btn-primary" href="/campgrounds/new"> Create a new Campground </a>
 	</div> 
 
@@ -12,7 +13,7 @@
 
 	<div class= "row imagegrid">
 
-		<% campImages.forEach(function(camp){  %>
+		<% campgrounds.forEach(function(camp){  %>
 
 			<div class = "col-lg-4 col-md-3 col-sm-6 col-xs-6">
 				<div class = "thumbnail">
