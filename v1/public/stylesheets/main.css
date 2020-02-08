@@ -1,13 +1,24 @@
+/*
 .thumbnail{
 
 	border: 0;
 	box-shadow: none;
 }
-
+*/
+.thumbnail{
+    padding: 0;
+}
+/*
 .caption {
 	text-align: center;
 }
+*/
 
+/*
+.caption-full{
+    padding: 9px;
+}
+*/
 .imagegrid{
 	display: flex;
 	flex-wrap: wrap;
@@ -29,4 +40,8 @@
 
 .no-margin{
 	margin:0;
+}
+
+.sidebar{
+    margin-top: 10px;
 }

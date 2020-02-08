@@ -1,4 +1,4 @@
-<%- include("partials/header") %>
+<%- include("../partials/header.ejs") %>
 
 <header>
 	<div class="jumbotron text-center" style="background-color: magenta;">
@@ -18,13 +18,17 @@
 			<div class = "col-lg-4 col-md-3 col-sm-6 col-xs-6">
 				<div class = "thumbnail">
 					<div class = "caption">
-				    <h4> <%= camp.name %> </h4>
+				    <h4 class="text-center"> <%= camp.name %> </h4>
 				    </div>
-					<img src= <%= camp.image %> >
+						<img src= <%= camp.image %> >
+
+						<p class="caption" style="text-align:center;">
+							<a href="/campgrounds/<%= camp._id %>" class="btn btn-primary"> More Info</a>
+						</p>
 				</div>
 			</div>
 
 		<% }); %>
 	</div>
 
-<%- include("partials/footer") %>
+<%- include("../partials/footer") %>
