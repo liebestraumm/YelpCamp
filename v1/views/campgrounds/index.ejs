@@ -1,16 +1,12 @@
 <%- include("../partials/header.ejs") %>
-
 <header>
 	<div class="jumbotron text-center" style="background-color: magenta;">
 		<h2>Yelp Campgrounds</h2>
 		<h4>View our hand picked campgrounds from all over the world</h4>
 		<a class="btn btn-lg btn-primary" href="/campgrounds/new"> Create a new Campground </a>
-	</div> 
+    </div>    
 
 </header>
-
-<h1> Campgrounds </h1>
-
 	<div class= "row imagegrid">
 
 		<% campgrounds.forEach(function(camp){  %>
