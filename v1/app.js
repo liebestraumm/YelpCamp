@@ -1,10 +1,13 @@
 //=================NODE MODULES=====================/
 var express 	    = require("express"),
 	app 		    = express(),
+    method          = require("method-override");
   	bodyP 		    = require("body-parser"),
   	mongoose	    = require("mongoose"),
     passport        = require("passport"),
     localStrategy   = require("passport-local"),
+    flash           = require("connect-flash"),
+    old             = {};
 //==================================================//
 //=================MODELS============================//
     User            = require("./models/user"),
@@ -23,6 +26,8 @@ app.use(bodyP.urlencoded({extended: true}));
 app.use(express.static(__dirname+"/public"));
 app.use(express.static("images"));
 app.set("view engine", "ejs");
+app.use(method("_method"));
+app.use(flash());
 
 //===========SETTING AUTHENTICATION VARIABLES======//
 //Initializing express-session module.
@@ -44,7 +49,10 @@ passport.deserializeUser(User.deserializeUser());
 
 //Global variables shared by templates
 app.use(function(req,res,next){
-    res.locals.currentUser = req.user;
+    res.locals.currentUser = req.user,
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    res.locals.old = {};
     next();
 });
 

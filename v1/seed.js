@@ -53,6 +53,8 @@ function seedDB(){
 //            }
 //        });
 //    })
+        
+        Comment.remove({}, function(err){});
 });
     
 }

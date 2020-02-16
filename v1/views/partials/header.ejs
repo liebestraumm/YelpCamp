@@ -27,7 +27,17 @@
 				</div>
 
 			</div>
+    </nav>
+    <div class="container">
+        <% if(error && error.length > 0) { %>
 
-
-
-	</nav>
+    <div class="alert alert-danger message-display">
+    <h3><%= error %></h3>
+    </div>
+        
+        <% } else if (success && success.length > 0) { %>
+            <div class="alert alert-success message-display">
+        <h3><%= success %></h3>
+        </div>
+        <% } %>
+    </div>

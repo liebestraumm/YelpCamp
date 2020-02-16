@@ -19,6 +19,12 @@
     padding: 9px;
 }
 */
+.message-display {
+    padding: 0;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
 
 .imagegrid{
 	display: flex;
