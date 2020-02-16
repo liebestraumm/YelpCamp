@@ -20,6 +20,7 @@ var express 	    = require("express"),
     //SEEDER  FILE
     seedDB          = require("./seed");
 var id = "";
+const PORT = process.env.PORT || 3000;
 //seedDB();
 mongoose.connect("mongodb://localhost:27017/yelp_camp",  {useUnifiedTopology: true, useNewUrlParser: true});
 app.use(bodyP.urlencoded({extended: true}));
@@ -60,7 +61,7 @@ app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
-app.listen(3000, function(){
+app.listen(PORT, () => {
 
 	console.log("Server Started");
 });
