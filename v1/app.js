@@ -16,7 +16,7 @@ var express 	    = require("express"),
     campgroundRoutes = require("./routes/campgrounds"),
     commentRoutes = require("./routes/comments"),
     indexRoutes = require("./routes/index"),
-//=====================================================//
+//==================================================//
     //SEEDER  FILE
     // seedDB          = require("./seed");
 var id = "";
