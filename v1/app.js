@@ -15,11 +15,10 @@ var express 	    = require("express"),
 //====================ROUTES========================//
     campgroundRoutes = require("./routes/campgrounds"),
     commentRoutes = require("./routes/comments"),
-    indexRoutes = require("./routes/index"),
+    indexRoutes = require("./routes/index")
 //==================================================//
     //SEEDER  FILE
     // seedDB          = require("./seed");
-var id = "";
 const PORT = process.env.PORT || 3000;
 //seedDB();
 // mongoose.connect("mongodb://localhost:3000/yelp_camp", {useunifiedTopology: true, useCreateIndex: true, useNewUrlParser: true});
