@@ -18,11 +18,22 @@ var express 	    = require("express"),
     indexRoutes = require("./routes/index"),
 //====================================================//
     //SEEDER  FILE
-    seedDB          = require("./seed");
+    // seedDB          = require("./seed");
 var id = "";
 const PORT = process.env.PORT || 3000;
 //seedDB();
-mongoose.connect("mongodb://localhost:27017/yelp_camp",  {useUnifiedTopology: true, useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost:3000/yelp_camp", {useunifiedTopology: true, useCreateIndex: true, useNewUrlParser: true});
+//=============SETTING REMOTE DB (MONGODBATLAS REPOSITORY)==================//
+mongoose.connect("mongodb+srv://outdoorsiteadmin:012075tlilo@outdoorsite-6xf0y.mongodb.net/outdoorsite?retryWrites=true&w=majority",  {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true 
+}).then (() => {
+    
+    console.log("Entered!");
+
+}).catch(err => {
+    
+    console.log("Error: ", err.message);
+});
+//==========================================================================//
 app.use(bodyP.urlencoded({extended: true}));
 app.use(express.static(__dirname+"/public"));
 app.use(express.static("images"));
