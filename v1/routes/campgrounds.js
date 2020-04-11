@@ -1,14 +1,53 @@
-var express = require("express");
-var router = express.Router();
-var isLogged = require("../middlewares/isLogged");
-var checkAuthorization = require("../middlewares/checkAuthorization");
+var express  			= require("express"),
+	multer				= require("multer"),
+	cloudinary			= require("cloudinary"),
+	isLogged 			= require("../middlewares/isLogged"),
+	checkAuthorization 	= require("../middlewares/checkAuthorization"),
+	router 				= express.Router();
+require('dotenv').config();
+//ENV Variables
+const API_K = process.env.API_K,
+	  API_S = process.env.API_S,
+	  NAME  = process.env.NAME;
 //=================MODELS============================//
 var Campground      = require("../models/campground");
 //=================================================//
+//Authenticate User
 router.use(function(req,res,next){
     res.locals.currentUser = req.user;
     next();
 });
+
+//==================================SETTING UP MODULES========================================//
+//--Multer:
+//Creates Disk Storage and sets names of images to be upload using date and name of the image
+var storage = multer.diskStorage({
+	filename: function(req, file, callback) {
+	  callback(null, Date.now() + file.originalname);
+	}
+  });
+
+//Filters the image. Validates that the the file to be uploaded is an image. If not, returns an error.
+var imageFilter = function (req, file, cb) {
+	  // accept image files only
+	  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+		  return cb(new Error('Only image files are allowed!'), false);
+	  }
+	  cb(null, true);
+  };
+
+//Uploads image to server using properties configured above
+var upload = multer({ storage: storage, fileFilter: imageFilter})
+
+
+//--Cloudinary: This creates a storage server for the images in the cloud.
+cloudinary.config({ 
+  cloud_name: NAME, 
+  api_key: API_K, 
+  api_secret: API_S
+});
+
+//======================================================//
 //===================CAMPGROUNDS ROUTES===============//
 router.get("/", function(req, res){
 	Campground.find({}, function(error, campgrounds){
@@ -22,29 +61,32 @@ router.get("/", function(req, res){
 	});	
 });
 
-router.post("/", isLogged, function(req, res){
+router.post("/", isLogged, upload.single('image'), function(req, res){
+		cloudinary.uploader.upload(req.file.path, function(result) {
+			let name = req.body.camp;
+			// add cloudinary url for the image to the campground object under image property
+			let image = result.secure_url;
+			let description = req.body.description;
+			let price   =   req.body.price;
+			let author = {
+				id: req.user._id,
+				username: req.user.username
+			}
+			var campground = new Campground({name: name, image: image, description: description, price: price, author: author});
 
-	var name = req.body.camp;
-	var image = req.body.image;
-	var description = req.body.description;
-    var price   =   req.body.price;
-    var author = {
-        id: req.user._id,
-        username: req.user.username
-    }
-	var campground = new Campground({name: name, image: image, description: description, price: price, author: author});
-
-	campground.save(function(error, campground){
-		if(error)
-		{   req.flash("error", "Something Went Wrong with Database!");
-			console.log("Error Saving: " + error);
-		}
-//        else
-//            console.log(campground);
+			campground.save(function(error, campground){
+				if(error)
+				{   req.flash("error", "Something Went Wrong with Database!");
+					console.log("Error Saving: " + error);
+					return res.redirect("back");
+				}
+		//        else
+		//            console.log(campground);
+			});
+			req.flash("success", "New Campground Created!");
+			res.redirect("/campgrounds");
+		});
 	});
-    req.flash("success", "New Campground Created!");
-	res.redirect("/campgrounds");
-});
 
 router.get("/new", isLogged, function(req, res){
 
