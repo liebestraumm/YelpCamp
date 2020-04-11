@@ -19,10 +19,10 @@ var express 	    = require("express"),
 //==================================================//
     //SEEDER  FILE
     // seedDB          = require("./seed");
-const PORT = process.env.PORT || 3000;
+const PORT      = process.env.PORT || 3000,
+      LOCALDB   = process.env.LOCALDB;
 //seedDB();
-// mongoose.connect("mongodb://localhost:27017/yelp_camp", {useUnifiedTopology: true, useNewUrlParser: true});
-mongoose.connect(process.env.DATABASEURL, {useUnifiedTopology: true, useCreateIndex: true, useNewUrlParser: true});
+//mongoose.connect(LOCALDB,  {useUnifiedTopology: true, useNewUrlParser: true});
 //=============SETTING REMOTE DB (MONGODBATLAS REPOSITORY)==================//
 mongoose.connect(process.env.DATABASEURL,  {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true 
 }).then (() => {
