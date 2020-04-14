@@ -52,3 +52,9 @@
 .sidebar{
     margin-top: 10px;
 }
+
+/* Google Maps */
+#map {
+    height: 400px;
+    width: 100%;
+}
