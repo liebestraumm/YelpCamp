@@ -16,13 +16,53 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-                        <li><a href="/campgrounds">Home</a></li>
+                        <% if(typeof page !== 'undefined' && page === 'campgrounds') { %>
+                            <li class="active">
+                                <a>Home</a>
+                            </li>
+                        <% } else { %>
+                            <li>
+                                <a href="/campgrounds">Home</a>
+                            </li>    
+                        <% }    %>
                         <% if(!currentUser) { %>
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/register">Sign Up</a></li>
+                            <% if(typeof page !== 'undefined' && page === 'login') { %>
+                                <li class="active">
+                                    <a>Login</a>
+                                </li>
+                            <% } else { %>
+                                <li>
+                                    <a href="/login">Login</a>
+                                </li>    
+                            <% }    %>
+                            <% if(typeof page !== 'undefined' && page === 'register') { %>
+                                <li class="active">
+                                    <a>Sign Up</a>
+                                </li>    
+                             <% } else { %>
+                                    <li>
+                                        <a href="/register">Sign Up</a>
+                                    </li>    
+                            <% }    %>                           
                        <% } else { %>
-                        <li><a href="/">Logged in as <%=currentUser.username.toUpperCase() %></a></li>
-						<li><a href="/logout">Log Out</a></li>
+                        <% if(typeof page !== 'undefined' && page === 'logout') { %>
+                            <li class="active">
+                                <a>Log Out</a>
+                            </li>    
+                         <% } else { %>
+                                <li>
+                                    <a href="/logout">Log Out</a>
+                                </li>    
+                        <% }    %> 
+                        <% if(typeof page !== 'undefined' && page === 'profile') { %>
+                            <li class="active">
+                                <a>Logged in as <%=currentUser.username.toUpperCase() %></a>
+                            </li>  
+                         <% } else { %>
+                            <li>
+                                <a href="../users/<%=currentUser._id%>">Logged in as <%=currentUser.username.toUpperCase() %></a>
+                            </li>   
+                        <% }    %>              
                     <% } %>
 					</ul>
 
