@@ -45,15 +45,6 @@
                                     </li>    
                             <% }    %>                           
                        <% } else { %>
-                        <% if(typeof page !== 'undefined' && page === 'logout') { %>
-                            <li class="active">
-                                <a>Log Out</a>
-                            </li>    
-                         <% } else { %>
-                                <li>
-                                    <a href="/logout">Log Out</a>
-                                </li>    
-                        <% }    %> 
                         <% if(typeof page !== 'undefined' && page === 'profile') { %>
                             <li class="active">
                                 <a>Logged in as <%=currentUser.username.toUpperCase() %></a>
@@ -62,7 +53,16 @@
                             <li>
                                 <a href="../users/<%=currentUser._id%>">Logged in as <%=currentUser.username.toUpperCase() %></a>
                             </li>   
-                        <% }    %>              
+                        <% }    %>   
+                        <% if(typeof page !== 'undefined' && page === 'logout') { %>
+                            <li class="active">
+                                <a>Log Out</a>
+                            </li>    
+                         <% } else { %>
+                                <li>
+                                    <a href="/logout">Log Out</a>
+                                </li>    
+                        <% }    %>           
                     <% } %>
 					</ul>
 
