@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 //=================MODELS============================//
 var User   = require("../models/user");
+var Campground = require("../models/campground");
 //=================================================//
 
 router.get("/", function(req, res){
@@ -17,13 +18,17 @@ router.get("/register", function(req,res){
 });
 
 router.post("/register", function(req,res){
-   User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+   User.register(new User({username: req.body.username, 
+                           firstName: req.body.firstName,
+                           lastName: req.body.lastName,
+                           avatar: req.body.avatar,
+                           email: req.body.email}), req.body.password, function(err, user){
        if(err)
            {  req.flash("error", "Error: " + err);
               res.redirect("/register");
            }
            passport.authenticate("local")(req, res, function(){
-              req.flash("success", "Welcome to Yelp Camp " + req.user.username);
+              req.flash("success", "Welcome to GoCamp! " + req.user.username);
               res.redirect("/campgrounds"); 
            });
    });
@@ -49,4 +54,24 @@ router.get("/logout", function(req,res){
 });
 //====================================================//
 
+
+//User Profile
+router.get("/users/:id", (req, res) => {
+   User.findById(req.params.id, (err, user) => {
+      if(err){
+         req.flash("error", err.message);
+         return res.redirect("back");
+      }
+      else {
+         Campground.find().where("author.id").equals(user._id).exec((err, authorPosts) => {
+            if(err){
+               req.flash("error", err.message);
+               return res.redirect("back");
+            }
+            res.render("./user/show", {user: user, posts:authorPosts});
+         });
+      }
+   })
+});
+//=====================================================//
 module.exports = router;

@@ -1,0 +1,31 @@
+<%- include("../partials/header") %>
+<div class="container text-center">
+    <h1><%=user.username%> Profile</h1>
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="thumbnail">
+                <img src="<%= user.avatar %>" alt="Avatar">
+                <div class="caption" style="padding:0;"><%= user.firstName %> <%= user.lastName %></div>
+                <a href="mailto:<%=user.email%>">Email me!: <%user.email%></a>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <p class="text-justify">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin sagittis nisl rhoncus mattis rhoncus urna. Aliquam faucibus purus in massa tempor nec. Sed id semper risus in hendrerit gravida rutrum quisque. Cras fermentum odio eu feugiat pretium. Quam vulputate dignissim suspendisse in est. Mattis pellentesque id nibh tortor id aliquet lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada. Volutpat blandit aliquam etiam erat. Pellentesque id nibh tortor id aliquet lectus proin.
+                Penatibus et magnis dis parturient montes nascetur ridiculus. Et ligula ullamcorper malesuada proin libero nunc consequat interdum varius. Faucibus nisl tincidunt eget nullam non. Sem fringilla ut morbi tincidunt augue interdum velit. Quisque id diam vel quam elementum pulvinar etiam non quam. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Maecenas sed enim ut sem viverra aliquet eget. Blandit libero volutpat sed cras ornare arcu dui. Turpis egestas pretium aenean pharetra magna ac placerat vestibulum. Metus dictum at tempor commodo ullamcorper a.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <h3><%=user.username%>'s Recommendations</h3>
+        <div class="col-xs-4">
+            <% posts.forEach((post) => { %>
+                <div class="thumbnail">
+                    <img src="<%=post.image%>" alt="Recommendation">
+                    <div class="caption"><h4><a href="../campgrounds/<%=post._id%>"><%=post.name%></a></h4></div>
+                </div>
+            <% })                        %>   
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer") %>
